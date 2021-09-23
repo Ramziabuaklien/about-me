@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
  function Navbar() {
-  
-  const navbarLinks = document.getElementsByClassName("navbar-links");
 
   const now = new Date().toLocaleTimeString();
+
+
+  const [humbrager, setHumbrager]= useState(true);
+  
 
   const [currentTime, setCurrentTime] = useState(now);
  
@@ -18,8 +20,12 @@ import { Link, withRouter } from "react-router-dom";
     setInterval(handleTimeChange, 1000);
     setCurrentTime(now);
   }
+
+
   function handelClick(){
-  navbarLinks.classList.toggle('active');
+  setHumbrager(prevValue =>{
+    return !prevValue;
+  });
 }
   
 
@@ -33,7 +39,7 @@ return (<nav class="navbar navbar-dark bg-dark">
      <span class="bar"></span>
      <span class="bar"></span>
    </a>
-   <div style={{textAlign: "center"}} className="navbar-links">
+   <div style={{textAlign: "center"}} className={humbrager? "navbar-links": "container navbar-links active"}>
    <ul class="nav justify-content-end">
   <li class="nav-item">
      <Link class="Linka btn btn-outline-light btn-lg px-4 me-md-2 fw-bold" to="/">Home</Link>
@@ -42,10 +48,10 @@ return (<nav class="navbar navbar-dark bg-dark">
     <Link class="Linka btn btn-outline-light btn-lg px-4 me-md-2 fw-bold" to="/about">About</Link>
   </li>
   <li>
-    <Link to="/Project" class="Linka btn btn-outline-light btn-lg px-4 me-md-2 fw-bold">Project</Link>
+    <Link to="/Project" class="Linka btn btn-outline-light btn-lg px-4 me-md-2 fw-bold">ToDoList</Link>
   </li>
   <li>
-    <Link to="/KeeperApp" class="Linka btn btn-outline-light btn-lg px-4 me-md-2 fw-bold">KeeperApp</Link>
+    <Link to="/KeeperApp" class="Linka btn btn-outline-light btn-lg px-4 me-md-2 fw-bold">NotesApp</Link>
   </li>
 </ul>
    </div>
